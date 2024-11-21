@@ -18,18 +18,53 @@
     <link href="/admin-assets/css/sb-admin-2.min.css" rel="stylesheet">
 
     <style>
+        .sidebar-scroll {
+            width: 250px !important;
+            max-height: 100vh; /* Limite la hauteur à celle de la fenêtre */
+            overflow-y: auto !important; /* Active le scroll vertical */
+            overflow-x: hidden; /* Désactive le scroll horizontal */
+            scrollbar-width: thin; /* Optionnel : Barre de défilement plus fine (pour les navigateurs modernes) */
+            /* scrollbar-color: #4e73df #f8f9fc; /* Optionnel : Couleurs des barres de défilement */
+        }
+
+        /* Cacher la barre de défilement pour les navigateurs modernes */
+        .sidebar-scroll {
+            scrollbar-width: none; /* Firefox */
+        }
+        /* Style des barres de défilement pour les navigateurs WebKit (Chrome, Edge, Safari) */
+        .sidebar-scroll::-webkit-scrollbar {
+            /* width: 8px; */
+            display: none !important;
+        }
+
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            /* background-color: #4e73df;
+            border-radius: 10px; */
+            display: none !important;
+        }
+
+        .sidebar-scroll::-webkit-scrollbar-track {
+            /* background-color: #f8f9fc; */
+            display: none !important;
+        }
+
         #accordionSidebar *{
-            transition: 1s !important;
+            transition: 0.7s !important;
         }
         .toggled{
-            transition: 1s !important;
+            transition: 0.7s !important;
         }
         .collapse{
-            transition: 1s !important;
+            transition: 0.7s !important;
         }
         li.nav-item *{
-            transition: 1s !important;
+            transition: 0.7s !important;
         }
+
+        .sidebar.toggled{
+            transition: 0s !important;
+        }
+
         body {
             min-height: 100vh;
             display: flex;
@@ -44,6 +79,30 @@
             /* background: #d61111 !important; */
         }
 
+        
+/* width */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: rgba(34, 102, 239, 0.501); 
+  border-radius: 10px;
+  transition: 1s !important;
+}
+/* 
+body::-webkit-scrollbar-thumb:hover {
+  background: #b2afaf; 
+  transition: 1s !important;
+} */
+
     </style>
     <title><%= title %> - Eventinz</title>
 </head>
@@ -53,14 +112,15 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion  sidebar-scroll" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    <!-- <i class="fas fa-laugh-wink"></i> -->
+                     <img src="/admin-assets/img/Eventinz_logo.png" alt="" width="50" height="50" style="background-color: white; border-radius: 50%;">
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Eventinz <!--sup>2</sup--></div>
             </a>
 
             <!-- Divider -->
@@ -391,7 +451,7 @@
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->
-                    <div class="container-fluid" >
+                    <div class="container-fluid mb-5" >
                         <%- body %> <!-- Affiche le contenu des pages ici -->
                     </div>
                     <!-- /.container-fluid -->
@@ -417,7 +477,7 @@
 
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#/admin-assets/#page-top">
+    <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
